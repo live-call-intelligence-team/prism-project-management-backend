@@ -20,7 +20,7 @@ module.exports = {
             }),
             createdAt: new Date(),
             updatedAt: new Date(),
-        }]);
+        }], { ignoreDuplicates: true });
 
         // Hash password for demo users
         const passwordHash = await bcrypt.hash('password123', 10);
@@ -99,7 +99,7 @@ module.exports = {
             },
         ];
 
-        await queryInterface.bulkInsert('Users', users);
+        await queryInterface.bulkInsert('Users', users, { ignoreDuplicates: true });
     },
 
     async down(queryInterface, Sequelize) {
