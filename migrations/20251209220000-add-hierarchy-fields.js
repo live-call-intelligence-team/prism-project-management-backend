@@ -3,21 +3,21 @@
 module.exports = {
     async up(queryInterface, Sequelize) {
         // Add usesEpics to Projects
-        await queryInterface.addColumn('projects', 'uses_epics', {
+        await queryInterface.addColumn('Projects', 'uses_epics', {
             type: Sequelize.BOOLEAN,
             defaultValue: true,
             allowNull: false
         });
 
         // Add tags to Epics
-        await queryInterface.addColumn('epics', 'tags', {
+        await queryInterface.addColumn('Epics', 'tags', {
             type: Sequelize.ARRAY(Sequelize.STRING),
             defaultValue: [],
             allowNull: false
         });
 
         // Add tags to Features
-        await queryInterface.addColumn('features', 'tags', {
+        await queryInterface.addColumn('Features', 'tags', {
             type: Sequelize.ARRAY(Sequelize.STRING),
             defaultValue: [],
             allowNull: false
@@ -25,8 +25,8 @@ module.exports = {
     },
 
     async down(queryInterface, Sequelize) {
-        await queryInterface.removeColumn('projects', 'uses_epics');
-        await queryInterface.removeColumn('epics', 'tags');
-        await queryInterface.removeColumn('features', 'tags');
+        await queryInterface.removeColumn('Projects', 'uses_epics');
+        await queryInterface.removeColumn('Epics', 'tags');
+        await queryInterface.removeColumn('Features', 'tags');
     }
 };

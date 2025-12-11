@@ -2,7 +2,7 @@
 
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        await queryInterface.createTable('epics', {
+        await queryInterface.createTable('Epics', {
             id: {
                 allowNull: false,
                 primaryKey: true,
@@ -13,7 +13,7 @@ module.exports = {
                 type: Sequelize.UUID,
                 allowNull: false,
                 references: {
-                    model: 'projects',
+                    model: 'Projects',
                     key: 'id'
                 },
                 onUpdate: 'CASCADE',
@@ -43,7 +43,7 @@ module.exports = {
                 type: Sequelize.UUID,
                 allowNull: true,
                 references: {
-                    model: 'users',
+                    model: 'Users',
                     key: 'id'
                 },
                 onUpdate: 'CASCADE',
@@ -72,11 +72,11 @@ module.exports = {
         });
 
         // Indexes
-        await queryInterface.addIndex('epics', ['project_id']);
-        await queryInterface.addIndex('epics', ['owner_id']);
+        await queryInterface.addIndex('Epics', ['project_id']);
+        await queryInterface.addIndex('Epics', ['owner_id']);
     },
 
     down: async (queryInterface, Sequelize) => {
-        await queryInterface.dropTable('epics');
+        await queryInterface.dropTable('Epics');
     }
 };

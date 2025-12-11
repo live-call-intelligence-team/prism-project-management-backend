@@ -3,13 +3,13 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.addColumn('epics', 'goals', {
+    await queryInterface.addColumn('Epics', 'goals', {
       type: Sequelize.TEXT,
       allowNull: true,
     });
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.removeColumn('epics', 'goals');
+    await queryInterface.removeColumn('Epics', 'goals');
   }
 };

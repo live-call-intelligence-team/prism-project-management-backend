@@ -2,34 +2,34 @@
 
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        await queryInterface.addColumn('issues', 'epic_id', {
+        await queryInterface.addColumn('Issues', 'epic_id', {
             type: Sequelize.UUID,
             allowNull: true,
             references: {
-                model: 'epics',
+                model: 'Epics',
                 key: 'id'
             },
             onUpdate: 'CASCADE',
             onDelete: 'SET NULL'
         });
 
-        await queryInterface.addColumn('issues', 'feature_id', {
+        await queryInterface.addColumn('Issues', 'feature_id', {
             type: Sequelize.UUID,
             allowNull: true,
             references: {
-                model: 'features',
+                model: 'Features',
                 key: 'id'
             },
             onUpdate: 'CASCADE',
             onDelete: 'SET NULL'
         });
 
-        await queryInterface.addIndex('issues', ['epic_id']);
-        await queryInterface.addIndex('issues', ['feature_id']);
+        await queryInterface.addIndex('Issues', ['epic_id']);
+        await queryInterface.addIndex('Issues', ['feature_id']);
     },
 
     down: async (queryInterface, Sequelize) => {
-        await queryInterface.removeColumn('issues', 'epic_id');
-        await queryInterface.removeColumn('issues', 'feature_id');
+        await queryInterface.removeColumn('Issues', 'epic_id');
+        await queryInterface.removeColumn('Issues', 'feature_id');
     }
 };

@@ -20,7 +20,7 @@ module.exports = {
     },
 
     async down(queryInterface, Sequelize) {
-        await queryInterface.removeColumn('sprints', 'total_points');
-        await queryInterface.removeColumn('sprints', 'completed_points');
+        await queryInterface.removeColumn('Sprints', 'total_points');
+        await queryInterface.removeColumn('Sprints', 'completed_points');
     }
 };

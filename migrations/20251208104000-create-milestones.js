@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('milestones', {
+        await queryInterface.createTable('Milestones', {
             id: {
                 type: Sequelize.UUID,
                 defaultValue: Sequelize.UUIDV4,
@@ -14,7 +14,7 @@ module.exports = {
                 type: Sequelize.UUID,
                 allowNull: false,
                 references: {
-                    model: 'projects',
+                    model: 'Projects',
                     key: 'id'
                 },
                 onUpdate: 'CASCADE',
@@ -60,10 +60,10 @@ module.exports = {
         });
 
         // Add index on project_id for faster queries
-        await queryInterface.addIndex('milestones', ['project_id']);
+        await queryInterface.addIndex('Milestones', ['project_id']);
     },
 
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('milestones');
+        await queryInterface.dropTable('Milestones');
     }
 };
