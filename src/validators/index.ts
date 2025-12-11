@@ -3,7 +3,7 @@ import { UserRole, IssueType, IssueStatus, IssuePriority, SprintStatus } from '.
 
 // User validation
 export const registerValidation = [
-    body('email').isEmail().normalizeEmail().withMessage('Valid email is required'),
+    body('email').trim().isEmail().normalizeEmail().withMessage('Valid email is required'),
     body('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters'),
     body('firstName').trim().notEmpty().withMessage('First name is required'),
     body('lastName').trim().notEmpty().withMessage('Last name is required'),
@@ -12,7 +12,7 @@ export const registerValidation = [
 
 export const loginValidation = [
     // Email is technically optional if username is provided, but we'll let controller handle "one of" requirement
-    body('email').optional().isEmail().normalizeEmail(),
+    body('email').optional().trim().isEmail().normalizeEmail(),
     body('username').optional().trim(),
     body('password').notEmpty().withMessage('Password is required'),
 ];
