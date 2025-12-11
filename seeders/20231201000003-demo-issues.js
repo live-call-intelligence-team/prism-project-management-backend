@@ -22,7 +22,7 @@ module.exports = {
             velocity: null,
             createdAt: new Date(),
             updatedAt: new Date(),
-        }]);
+        }], { ignoreDuplicates: true });
 
         // Create demo issues
         const issues = [
@@ -143,7 +143,7 @@ module.exports = {
             },
         ];
 
-        await queryInterface.bulkInsert('Issues', issues);
+        await queryInterface.bulkInsert('Issues', issues, { ignoreDuplicates: true });
 
         // Add some comments
         const comments = [
@@ -152,7 +152,7 @@ module.exports = {
                 issueId: '990e8400-e29b-41d4-a716-446655440002',
                 userId: dev1Id,
                 content: 'Completed the registration endpoint. Added email validation and password strength checks.',
-                mentions: [],
+                mentions: Sequelize.literal('ARRAY[]::uuid[]'),
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
@@ -167,7 +167,7 @@ module.exports = {
             },
         ];
 
-        await queryInterface.bulkInsert('Comments', comments);
+        await queryInterface.bulkInsert('Comments', comments, { ignoreDuplicates: true });
 
         // Add work logs
         const workLogs = [
@@ -193,7 +193,7 @@ module.exports = {
             },
         ];
 
-        await queryInterface.bulkInsert('WorkLogs', workLogs);
+        await queryInterface.bulkInsert('WorkLogs', workLogs, { ignoreDuplicates: true });
     },
 
     async down(queryInterface, Sequelize) {
