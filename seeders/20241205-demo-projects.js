@@ -4,7 +4,7 @@ module.exports = {
 
         // Get admin user for createdBy
         const [users] = await queryInterface.sequelize.query(
-            "SELECT id FROM users WHERE email = 'admin@demo.com' LIMIT 1"
+            "SELECT id FROM \"Users\" WHERE email = 'admin@demo.com' LIMIT 1"
         );
         const adminId = users[0]?.id;
 
@@ -46,7 +46,7 @@ module.exports = {
             },
         ];
 
-        await queryInterface.bulkInsert('projects', projects);
+        await queryInterface.bulkInsert('Projects', projects, { ignoreDuplicates: true });
     },
 
     down: async (queryInterface, Sequelize) => {

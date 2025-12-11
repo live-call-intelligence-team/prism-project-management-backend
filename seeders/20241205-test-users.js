@@ -85,7 +85,7 @@ module.exports = {
             },
         ];
 
-        await queryInterface.bulkInsert('Users', users);
+        await queryInterface.bulkInsert('Users', users, { ignoreDuplicates: true });
 
         console.log('✅ Test users created successfully!');
         console.log('📧 Login credentials:');

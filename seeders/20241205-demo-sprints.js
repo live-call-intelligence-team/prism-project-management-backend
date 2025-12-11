@@ -4,7 +4,7 @@ module.exports = {
 
         // Get project
         const [projects] = await queryInterface.sequelize.query(
-            "SELECT id FROM projects WHERE key = 'ECOM' LIMIT 1"
+            "SELECT id FROM \"Projects\" WHERE key = 'ECOM' LIMIT 1"
         );
         const projectId = projects[0]?.id;
 
@@ -60,7 +60,7 @@ module.exports = {
             },
         ];
 
-        await queryInterface.bulkInsert('sprints', sprints);
+        await queryInterface.bulkInsert('Sprints', sprints, { ignoreDuplicates: true });
     },
 
     down: async (queryInterface, Sequelize) => {
