@@ -183,7 +183,7 @@ User.init(
                 fields: ['email'],
             },
             {
-                fields: ['org_id'],
+                fields: ['orgId'],
             },
             {
                 fields: ['role'],

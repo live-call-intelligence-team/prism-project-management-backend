@@ -23,7 +23,7 @@ const sequelize = process.env.DATABASE_URL
         },
         define: {
             timestamps: true,
-            underscored: true,
+            underscored: false,
             freezeTableName: true,
         },
     })
@@ -43,7 +43,7 @@ const sequelize = process.env.DATABASE_URL
         },
         define: {
             timestamps: true,
-            underscored: true,
+            underscored: false,
             freezeTableName: true,
         },
     });
