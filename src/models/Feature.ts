@@ -48,7 +48,7 @@ Feature.init(
             type: DataTypes.UUID,
             allowNull: true,
             references: {
-                model: 'epics',
+                model: 'Epics',
                 key: 'id',
             },
         },
@@ -56,7 +56,7 @@ Feature.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'projects',
+                model: 'Projects',
                 key: 'id',
             },
         },
@@ -88,7 +88,7 @@ Feature.init(
             type: DataTypes.UUID,
             allowNull: true,
             references: {
-                model: 'users',
+                model: 'Users',
                 key: 'id',
             },
         },
@@ -116,7 +116,7 @@ Feature.init(
     },
     {
         sequelize,
-        tableName: 'features',
+        tableName: 'Features',
         underscored: true,
     }
 );

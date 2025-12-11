@@ -109,7 +109,7 @@ User.init(
             type: DataTypes.UUID,
             allowNull: true,
             references: {
-                model: 'users',
+                model: 'Users',
                 key: 'id',
             },
             field: 'created_by'
@@ -135,7 +135,7 @@ User.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'organizations',
+                model: 'Organizations',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -175,7 +175,7 @@ User.init(
     },
     {
         sequelize,
-        tableName: 'users',
+        tableName: 'Users',
         timestamps: true,
         indexes: [
             {

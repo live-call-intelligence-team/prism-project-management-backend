@@ -40,7 +40,7 @@ Workflow.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'organizations',
+                model: 'Projects',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -75,7 +75,7 @@ Workflow.init(
     },
     {
         sequelize,
-        tableName: 'workflows',
+        tableName: 'Workflows',
         timestamps: true,
         indexes: [
             {

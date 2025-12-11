@@ -36,7 +36,7 @@ Comment.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'issues',
+                model: 'Issues',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -45,7 +45,7 @@ Comment.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'users',
+                model: 'Users',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -66,7 +66,7 @@ Comment.init(
     },
     {
         sequelize,
-        tableName: 'comments',
+        tableName: 'Comments',
         timestamps: true,
         indexes: [
             {

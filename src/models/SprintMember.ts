@@ -34,7 +34,7 @@ SprintMember.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'sprints',
+                model: 'Sprints',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -43,7 +43,7 @@ SprintMember.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'users',
+                model: 'Users',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -60,7 +60,7 @@ SprintMember.init(
     },
     {
         sequelize,
-        tableName: 'sprint_members',
+        tableName: 'SprintMembers',
         timestamps: true,
         underscored: false,
         indexes: [

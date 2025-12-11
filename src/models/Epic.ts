@@ -49,7 +49,7 @@ Epic.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'projects',
+                model: 'Projects',
                 key: 'id',
             },
         },
@@ -77,7 +77,7 @@ Epic.init(
             type: DataTypes.UUID,
             allowNull: true,
             references: {
-                model: 'users',
+                model: 'Users',
                 key: 'id',
             },
         },
@@ -121,7 +121,7 @@ Epic.init(
     },
     {
         sequelize,
-        tableName: 'epics',
+        tableName: 'Epics',
         underscored: true,
     }
 );

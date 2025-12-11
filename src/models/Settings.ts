@@ -39,14 +39,14 @@ Settings.init(
             type: DataTypes.UUID,
             allowNull: true,
             references: {
-                model: 'users',
+                model: 'Users',
                 key: 'id',
             },
         },
     },
     {
         sequelize,
-        tableName: 'settings',
+        tableName: 'Settings',
         timestamps: true,
     }
 );

@@ -53,7 +53,7 @@ Permission.init(
     },
     {
         sequelize,
-        tableName: 'permissions',
+        tableName: 'Permissions',
         timestamps: true,
         indexes: [
             {

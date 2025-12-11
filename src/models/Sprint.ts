@@ -59,7 +59,7 @@ Sprint.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'projects',
+                model: 'Projects',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -122,7 +122,7 @@ Sprint.init(
     },
     {
         sequelize,
-        tableName: 'sprints',
+        tableName: 'Sprints',
         timestamps: true,
         indexes: [
             {

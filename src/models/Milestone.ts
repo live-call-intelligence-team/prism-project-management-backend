@@ -47,7 +47,7 @@ Milestone.init(
             allowNull: false,
             field: 'project_id',
             references: {
-                model: 'projects',
+                model: 'Projects',
                 key: 'id',
             },
             onUpdate: 'CASCADE',
@@ -89,7 +89,7 @@ Milestone.init(
     },
     {
         sequelize,
-        tableName: 'milestones',
+        tableName: 'Milestones',
         modelName: 'Milestone',
         underscored: true,
         timestamps: true,

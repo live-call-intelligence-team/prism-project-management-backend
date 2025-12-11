@@ -43,7 +43,7 @@ CustomField.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'organizations',
+                model: 'Projects',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -80,7 +80,7 @@ CustomField.init(
     },
     {
         sequelize,
-        tableName: 'custom_fields',
+        tableName: 'CustomFields',
         timestamps: true,
         indexes: [
             {

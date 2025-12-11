@@ -77,7 +77,7 @@ Issue.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'projects',
+                model: 'Projects',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -118,7 +118,7 @@ Issue.init(
             type: DataTypes.UUID,
             allowNull: true,
             references: {
-                model: 'users',
+                model: 'Users',
                 key: 'id',
             },
             onDelete: 'SET NULL',
@@ -127,7 +127,7 @@ Issue.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'users',
+                model: 'Users',
                 key: 'id',
             },
             onDelete: 'RESTRICT',
@@ -136,7 +136,7 @@ Issue.init(
             type: DataTypes.UUID,
             allowNull: true,
             references: {
-                model: 'sprints',
+                model: 'Sprints',
                 key: 'id',
             },
             onDelete: 'SET NULL',
@@ -145,7 +145,7 @@ Issue.init(
             type: DataTypes.UUID,
             allowNull: true,
             references: {
-                model: 'issues',
+                model: 'Issues',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -154,7 +154,7 @@ Issue.init(
             type: DataTypes.UUID,
             allowNull: true,
             references: {
-                model: 'epics',
+                model: 'Epics',
                 key: 'id',
             },
             onDelete: 'SET NULL',
@@ -163,7 +163,7 @@ Issue.init(
             type: DataTypes.UUID,
             allowNull: true,
             references: {
-                model: 'features',
+                model: 'Features',
                 key: 'id',
             },
             onDelete: 'SET NULL',
@@ -219,7 +219,7 @@ Issue.init(
     },
     {
         sequelize,
-        tableName: 'issues',
+        tableName: 'Issues',
         timestamps: true,
         indexes: [
             {

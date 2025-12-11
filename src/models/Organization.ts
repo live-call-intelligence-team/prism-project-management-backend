@@ -63,7 +63,7 @@ Organization.init(
     },
     {
         sequelize,
-        tableName: 'organizations',
+        tableName: 'Organizations',
         timestamps: true,
         indexes: [
             {

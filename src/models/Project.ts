@@ -84,7 +84,7 @@ Project.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'organizations',
+                model: 'Organizations',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -93,7 +93,7 @@ Project.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'users',
+                model: 'Users',
                 key: 'id',
             },
             onDelete: 'RESTRICT',
@@ -102,7 +102,7 @@ Project.init(
             type: DataTypes.UUID,
             allowNull: true,
             references: {
-                model: 'users',
+                model: 'Users',
                 key: 'id',
             },
             onDelete: 'SET NULL',
@@ -111,7 +111,7 @@ Project.init(
             type: DataTypes.UUID,
             allowNull: true,
             references: {
-                model: 'users',
+                model: 'Users',
                 key: 'id',
             },
             onDelete: 'SET NULL',
@@ -121,7 +121,7 @@ Project.init(
             type: DataTypes.UUID,
             allowNull: true,
             references: {
-                model: 'users',
+                model: 'Users',
                 key: 'id',
             },
             onDelete: 'SET NULL',
@@ -175,7 +175,7 @@ Project.init(
     },
     {
         sequelize,
-        tableName: 'projects',
+        tableName: 'Projects',
         timestamps: true,
         indexes: [
             {

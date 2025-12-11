@@ -34,7 +34,7 @@ ProjectMember.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'projects',
+                model: 'Projects',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -43,7 +43,7 @@ ProjectMember.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'users',
+                model: 'Users',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -61,7 +61,7 @@ ProjectMember.init(
     },
     {
         sequelize,
-        tableName: 'project_members',
+        tableName: 'ProjectMembers',
         timestamps: true,
         indexes: [
             {

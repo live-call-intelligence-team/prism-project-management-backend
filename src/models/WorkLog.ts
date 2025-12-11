@@ -36,7 +36,7 @@ WorkLog.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'issues',
+                model: 'Issues',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -45,7 +45,7 @@ WorkLog.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'users',
+                model: 'Users',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -66,7 +66,7 @@ WorkLog.init(
     },
     {
         sequelize,
-        tableName: 'work_logs',
+        tableName: 'WorkLogs',
         timestamps: true,
         indexes: [
             {

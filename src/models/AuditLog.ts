@@ -39,7 +39,7 @@ AuditLog.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'users',
+                model: 'Users',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -71,7 +71,7 @@ AuditLog.init(
     },
     {
         sequelize,
-        tableName: 'audit_logs',
+        tableName: 'AuditLogs',
         timestamps: true,
         updatedAt: false,
         indexes: [

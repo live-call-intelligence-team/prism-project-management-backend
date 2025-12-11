@@ -39,7 +39,7 @@ Notification.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'users',
+                model: 'Users',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -67,7 +67,7 @@ Notification.init(
     },
     {
         sequelize,
-        tableName: 'notifications',
+        tableName: 'Notifications',
         timestamps: true,
         indexes: [
             {

@@ -41,7 +41,7 @@ IssueLink.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'issues',
+                model: 'Issues',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -50,7 +50,7 @@ IssueLink.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'issues',
+                model: 'Issues',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -62,7 +62,7 @@ IssueLink.init(
     },
     {
         sequelize,
-        tableName: 'issue_links',
+        tableName: 'IssueLinks',
         timestamps: true,
         indexes: [
             {

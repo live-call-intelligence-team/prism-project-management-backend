@@ -42,7 +42,7 @@ Attachment.init(
             type: DataTypes.UUID,
             allowNull: true, // Now nullable
             references: {
-                model: 'issues',
+                model: 'Issues',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -51,7 +51,7 @@ Attachment.init(
             type: DataTypes.UUID,
             allowNull: true,
             references: {
-                model: 'projects',
+                model: 'Projects',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -61,7 +61,7 @@ Attachment.init(
             type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'users',
+                model: 'Users',
                 key: 'id',
             },
             onDelete: 'CASCADE',
@@ -89,7 +89,7 @@ Attachment.init(
     },
     {
         sequelize,
-        tableName: 'attachments',
+        tableName: 'Attachments',
         timestamps: true,
         indexes: [
             {
