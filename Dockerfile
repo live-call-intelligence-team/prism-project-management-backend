@@ -41,6 +41,7 @@ RUN npm ci --only=production && \
 
 # Copy built application from builder
 COPY --from=builder --chown=nodejs:nodejs /app/dist ./dist
+COPY --from=builder --chown=nodejs:nodejs /app/src/config/config.js ./dist/config/config.js
 
 # Copy necessary files
 COPY --chown=nodejs:nodejs migrations ./migrations
