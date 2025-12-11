@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { Organization } from '../models';
+import { AuthRequest } from '../types/interfaces';
 
 interface PortalSettings {
     clientPortalEnabled: boolean;
@@ -15,8 +16,9 @@ export class PortalSettingsController {
      * Get portal settings for organization
      */
     async getSettings(req: Request, res: Response): Promise<void> {
+        const authReq = req as AuthRequest;
         try {
-            const organizationId = req.user!.organizationId;
+            const organizationId = authReq.user!.orgId;
 
             const organization = await Organization.findByPk(organizationId);
 
@@ -29,13 +31,14 @@ export class PortalSettingsController {
             }
 
             // Get settings from organization metadata or use defaults
+            const orgSettings = organization.settings as any;
             const settings: PortalSettings = {
-                clientPortalEnabled: organization.settings?.clientPortalEnabled ?? true,
-                defaultTaskVisibility: organization.settings?.defaultTaskVisibility ?? false,
-                allowClientFileUpload: organization.settings?.allowClientFileUpload ?? true,
-                maxFileUploadSizeMB: organization.settings?.maxFileUploadSizeMB ?? 10,
-                emailNotificationsEnabled: organization.settings?.emailNotificationsEnabled ?? true,
-                requireApprovalForTasks: organization.settings?.requireApprovalForTasks ?? false,
+                clientPortalEnabled: orgSettings?.clientPortalEnabled ?? true,
+                defaultTaskVisibility: orgSettings?.defaultTaskVisibility ?? false,
+                allowClientFileUpload: orgSettings?.allowClientFileUpload ?? true,
+                maxFileUploadSizeMB: orgSettings?.maxFileUploadSizeMB ?? 10,
+                emailNotificationsEnabled: orgSettings?.emailNotificationsEnabled ?? true,
+                requireApprovalForTasks: orgSettings?.requireApprovalForTasks ?? false,
             };
 
             res.json({
@@ -58,8 +61,9 @@ export class PortalSettingsController {
      * Update portal settings
      */
     async updateSettings(req: Request, res: Response): Promise<void> {
+        const authReq = req as AuthRequest;
         try {
-            const organizationId = req.user!.organizationId;
+            const organizationId = authReq.user!.orgId;
             const {
                 clientPortalEnabled,
                 defaultTaskVisibility,
@@ -67,7 +71,7 @@ export class PortalSettingsController {
                 maxFileUploadSizeMB,
                 emailNotificationsEnabled,
                 requireApprovalForTasks,
-            } = req.body;
+            } = req.body as PortalSettings;
 
             const organization = await Organization.findByPk(organizationId);
 
@@ -81,11 +85,11 @@ export class PortalSettingsController {
 
             // Update settings
             const updatedSettings = {
-                ...organization.settings,
+                ...(organization.settings as any),
                 clientPortalEnabled,
                 defaultTaskVisibility,
                 allowClientFileUpload,
-                maxFileUploadSizeMB: parseInt(maxFileUploadSizeMB),
+                maxFileUploadSizeMB: Number(maxFileUploadSizeMB),
                 emailNotificationsEnabled,
                 requireApprovalForTasks,
             };

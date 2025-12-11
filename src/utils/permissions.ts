@@ -8,6 +8,7 @@ export const PERMISSIONS: Record<string, Record<UserRole, string[]>> = {
     // User Management
     users: {
         [UserRole.ADMIN]: ['create', 'read', 'update', 'delete'],
+        [UserRole.PROJECT_MANAGER]: ['create', 'read', 'update', 'delete'],
         [UserRole.SCRUM_MASTER]: ['read'],
         [UserRole.EMPLOYEE]: ['read_self'],
         [UserRole.CLIENT]: [],
@@ -16,6 +17,7 @@ export const PERMISSIONS: Record<string, Record<UserRole, string[]>> = {
     // Project Management
     projects: {
         [UserRole.ADMIN]: ['create', 'read', 'update', 'delete'],
+        [UserRole.PROJECT_MANAGER]: ['create', 'read', 'update', 'delete'],
         [UserRole.SCRUM_MASTER]: ['read', 'update'],
         [UserRole.EMPLOYEE]: ['read'],
         [UserRole.CLIENT]: ['read_assigned'],
@@ -24,6 +26,7 @@ export const PERMISSIONS: Record<string, Record<UserRole, string[]>> = {
     // Sprint Management
     sprints: {
         [UserRole.ADMIN]: ['create', 'read', 'update', 'delete', 'start', 'complete'],
+        [UserRole.PROJECT_MANAGER]: ['create', 'read', 'update', 'delete', 'start', 'complete'],
         [UserRole.SCRUM_MASTER]: ['create', 'read', 'update', 'delete', 'start', 'complete'],
         [UserRole.EMPLOYEE]: ['read'],
         [UserRole.CLIENT]: ['read'],
@@ -32,6 +35,7 @@ export const PERMISSIONS: Record<string, Record<UserRole, string[]>> = {
     // Issue/Story Management
     issues: {
         [UserRole.ADMIN]: ['create', 'read', 'update', 'delete'],
+        [UserRole.PROJECT_MANAGER]: ['create', 'read', 'update', 'delete'],
         [UserRole.SCRUM_MASTER]: ['create', 'read', 'update', 'delete'],
         [UserRole.EMPLOYEE]: ['create', 'read', 'update_assigned', 'delete_own'],
         [UserRole.CLIENT]: ['create', 'read', 'update_own'], // Added create and update_own
@@ -40,6 +44,7 @@ export const PERMISSIONS: Record<string, Record<UserRole, string[]>> = {
     // Comments
     comments: {
         [UserRole.ADMIN]: ['create', 'read', 'update', 'delete'],
+        [UserRole.PROJECT_MANAGER]: ['create', 'read', 'update', 'delete'],
         [UserRole.SCRUM_MASTER]: ['create', 'read', 'update', 'delete'],
         [UserRole.EMPLOYEE]: ['create', 'read', 'update_own', 'delete_own'],
         [UserRole.CLIENT]: ['create', 'read'],
@@ -48,6 +53,7 @@ export const PERMISSIONS: Record<string, Record<UserRole, string[]>> = {
     // Time Tracking
     time_entries: {
         [UserRole.ADMIN]: ['create', 'read', 'update', 'delete'],
+        [UserRole.PROJECT_MANAGER]: ['read_team'],
         [UserRole.SCRUM_MASTER]: ['read_team'],
         [UserRole.EMPLOYEE]: ['create', 'read_own', 'update_own', 'delete_own'],
         [UserRole.CLIENT]: [],
@@ -56,6 +62,7 @@ export const PERMISSIONS: Record<string, Record<UserRole, string[]>> = {
     // Reports
     reports: {
         [UserRole.ADMIN]: ['read_all'],
+        [UserRole.PROJECT_MANAGER]: ['read_all'],
         [UserRole.SCRUM_MASTER]: ['read_team'],
         [UserRole.EMPLOYEE]: ['read_own'],
         [UserRole.CLIENT]: ['read_project'],
@@ -64,6 +71,7 @@ export const PERMISSIONS: Record<string, Record<UserRole, string[]>> = {
     // Settings
     settings: {
         [UserRole.ADMIN]: ['read', 'update'],
+        [UserRole.PROJECT_MANAGER]: ['read', 'update'],
         [UserRole.SCRUM_MASTER]: [],
         [UserRole.EMPLOYEE]: [],
         [UserRole.CLIENT]: [],

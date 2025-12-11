@@ -1,7 +1,9 @@
 import { Router } from 'express';
 import { portalSettingsController } from '../controllers/portalSettingsController';
-import { authMiddleware } from '../middleware/auth';
-import { roleMiddleware } from '../middleware/roleCheck';
+import { authenticate as authMiddleware } from '../middleware/auth';
+import { requireRole as roleMiddleware } from '../middleware/rbac';
+
+import { UserRole } from '../types/enums';
 
 const router = Router();
 
@@ -9,7 +11,7 @@ const router = Router();
 router.use(authMiddleware);
 
 // Only admins can manage portal settings
-router.use(roleMiddleware(['ADMIN']));
+router.use(roleMiddleware(UserRole.ADMIN));
 
 // Get portal settings
 router.get('/', portalSettingsController.getSettings.bind(portalSettingsController));
