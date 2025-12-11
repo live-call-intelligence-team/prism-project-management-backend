@@ -7,7 +7,7 @@ module.exports = {
         // but usually safer to use SQL.
         // However, Sequelize might not handle enum updates gracefully.
         // Pure SQL approach for Postgres:
-        await queryInterface.sequelize.query(`ALTER TYPE "enum_Users_role" ADD VALUE IF NOT EXISTS 'PROJECT_MANAGER';`);
+        await queryInterface.sequelize.query(`ALTER TYPE "enum_users_role" ADD VALUE IF NOT EXISTS 'PROJECT_MANAGER';`);
 
         // 2. Add columns to Projects table
         await queryInterface.addColumn('Projects', 'project_manager_id', {
