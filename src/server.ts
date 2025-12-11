@@ -42,6 +42,7 @@ const io = new Server(server, {
 });
 
 // Middleware
+app.set('trust proxy', 1); // Trust first proxy (Render/Nginx)
 app.use(helmet()); // Security headers
 app.use(cors({
     origin: appConfig.corsOrigin,
