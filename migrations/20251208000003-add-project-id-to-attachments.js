@@ -4,7 +4,7 @@
 module.exports = {
     async up(queryInterface, Sequelize) {
         // Add projectId column
-        await queryInterface.addColumn('Attachments', 'project_id', {
+        await queryInterface.addColumn('Attachments', 'projectId', {
             type: Sequelize.UUID,
             allowNull: true,
             references: {
@@ -15,7 +15,7 @@ module.exports = {
         });
 
         // Make issueId nullable
-        await queryInterface.changeColumn('Attachments', 'issue_id', {
+        await queryInterface.changeColumn('Attachments', 'issueId', {
             type: Sequelize.UUID,
             allowNull: true,
             references: {
@@ -26,19 +26,19 @@ module.exports = {
         });
 
         // Add index for projectId
-        await queryInterface.addIndex('Attachments', ['project_id']);
+        await queryInterface.addIndex('Attachments', ['projectId']);
     },
 
     async down(queryInterface, Sequelize) {
         // Remove index
-        await queryInterface.removeIndex('Attachments', ['project_id']);
+        await queryInterface.removeIndex('Attachments', ['projectId']);
 
         // Remove projectId column
-        await queryInterface.removeColumn('Attachments', 'project_id');
+        await queryInterface.removeColumn('Attachments', 'projectId');
 
         // Make issueId not null (Warning: this might fail if there are nulls)
         // For rollback safety we usually skip reverting allowNullable unless strictly needed
-        await queryInterface.changeColumn('Attachments', 'issue_id', {
+        await queryInterface.changeColumn('Attachments', 'issueId', {
             type: Sequelize.UUID,
             allowNull: false,
             references: {
