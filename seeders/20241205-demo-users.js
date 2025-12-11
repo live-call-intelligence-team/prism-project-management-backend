@@ -3,66 +3,89 @@ module.exports = {
         const bcrypt = require('bcryptjs');
         const { v4: uuidv4 } = require('uuid');
 
+        // Get organization
+        const [orgs] = await queryInterface.sequelize.query(
+            "SELECT id FROM \"Organizations\" LIMIT 1"
+        );
+        const orgId = orgs[0]?.id;
+
+        if (!orgId) {
+            console.log('Organization not found. Please run organization seeder first.');
+            return;
+        }
+
         // Hash password for demo accounts
         const passwordHash = await bcrypt.hash('demo123', 10);
 
         const users = [
             {
                 id: uuidv4(),
-                name: 'Admin Demo',
+                firstName: 'Admin',
+                lastName: 'Demo',
                 email: 'admin@demo.com',
                 passwordHash: passwordHash,
-                role: 'admin',
+                role: 'ADMIN',
+                orgId: orgId,
                 isActive: true,
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
             {
                 id: uuidv4(),
-                name: 'Sarah Johnson',
+                firstName: 'Sarah',
+                lastName: 'Johnson',
                 email: 'scrum@demo.com',
                 passwordHash: passwordHash,
-                role: 'scrum_master',
+                role: 'SCRUM_MASTER',
+                orgId: orgId,
                 isActive: true,
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
             {
                 id: uuidv4(),
-                name: 'John Developer',
+                firstName: 'John',
+                lastName: 'Developer',
                 email: 'employee1@demo.com',
                 passwordHash: passwordHash,
-                role: 'employee',
+                role: 'EMPLOYEE',
+                orgId: orgId,
                 isActive: true,
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
             {
                 id: uuidv4(),
-                name: 'Emily Chen',
+                firstName: 'Emily',
+                lastName: 'Chen',
                 email: 'employee2@demo.com',
                 passwordHash: passwordHash,
-                role: 'employee',
+                role: 'EMPLOYEE',
+                orgId: orgId,
                 isActive: true,
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
             {
                 id: uuidv4(),
-                name: 'Michael Brown',
+                firstName: 'Michael',
+                lastName: 'Brown',
                 email: 'employee3@demo.com',
                 passwordHash: passwordHash,
-                role: 'employee',
+                role: 'EMPLOYEE',
+                orgId: orgId,
                 isActive: true,
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
             {
                 id: uuidv4(),
-                name: 'Client Demo',
+                firstName: 'Client',
+                lastName: 'Demo',
                 email: 'client@demo.com',
                 passwordHash: passwordHash,
-                role: 'client',
+                role: 'CLIENT',
+                orgId: orgId,
                 isActive: true,
                 createdAt: new Date(),
                 updatedAt: new Date(),
