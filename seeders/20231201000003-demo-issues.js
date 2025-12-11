@@ -161,7 +161,7 @@ module.exports = {
                 issueId: '990e8400-e29b-41d4-a716-446655440003',
                 userId: scrumMasterId,
                 content: '@alice Please make sure to add rate limiting to the login endpoint to prevent brute force attacks.',
-                mentions: [dev1Id],
+                mentions: Sequelize.literal(`ARRAY['${dev1Id}']::uuid[]`),
                 createdAt: new Date(),
                 updatedAt: new Date(),
             },
