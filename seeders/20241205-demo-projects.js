@@ -13,14 +13,26 @@ module.exports = {
             return;
         }
 
+        // Get organization
+        const [orgs] = await queryInterface.sequelize.query(
+            "SELECT id FROM \"Organizations\" LIMIT 1"
+        );
+        const orgId = orgs[0]?.id;
+
+        if (!orgId) {
+            console.log('Organization not found. Please run organization seeder first.');
+            return;
+        }
+
         const projects = [
             {
                 id: uuidv4(),
                 key: 'ECOM',
                 name: 'E-Commerce Platform Redesign',
                 description: 'Complete redesign of the e-commerce platform with modern UI/UX',
-                status: 'active',
-                createdBy: adminId,
+                status: 'ACTIVE',
+                leadId: adminId,
+                orgId: orgId,
                 createdAt: new Date('2024-09-01'),
                 updatedAt: new Date(),
             },
@@ -29,8 +41,9 @@ module.exports = {
                 key: 'MOBILE',
                 name: 'Mobile App Development',
                 description: 'Native mobile app for iOS and Android',
-                status: 'active',
-                createdBy: adminId,
+                status: 'ACTIVE',
+                leadId: adminId,
+                orgId: orgId,
                 createdAt: new Date('2024-10-01'),
                 updatedAt: new Date(),
             },
@@ -39,8 +52,9 @@ module.exports = {
                 key: 'API',
                 name: 'API Integration',
                 description: 'Integration with third-party payment and shipping APIs',
-                status: 'completed',
-                createdBy: adminId,
+                status: 'COMPLETED',
+                leadId: adminId,
+                orgId: orgId,
                 createdAt: new Date('2024-08-01'),
                 updatedAt: new Date(),
             },
