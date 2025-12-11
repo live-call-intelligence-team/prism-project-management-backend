@@ -51,7 +51,7 @@ module.exports = {
             },
         ];
 
-        await queryInterface.bulkInsert('Projects', projects);
+        await queryInterface.bulkInsert('Projects', projects, { ignoreDuplicates: true });
 
         // Add project members
         const projectMembers = [
@@ -99,7 +99,7 @@ module.exports = {
             },
         ];
 
-        await queryInterface.bulkInsert('ProjectMembers', projectMembers);
+        await queryInterface.bulkInsert('ProjectMembers', projectMembers, { ignoreDuplicates: true });
     },
 
     async down(queryInterface, Sequelize) {
