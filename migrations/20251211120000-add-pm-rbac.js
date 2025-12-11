@@ -3,11 +3,8 @@
 module.exports = {
     up: async (queryInterface, Sequelize) => {
         // 1. Add PROJECT_MANAGER to enum_users_role
-        // Postgres doesn't support ALTER TYPE ADD VALUE inside a transaction block in some versions, 
-        // but usually safer to use SQL.
-        // However, Sequelize might not handle enum updates gracefully.
-        // Pure SQL approach for Postgres:
-        await queryInterface.sequelize.query(`ALTER TYPE "enum_users_role" ADD VALUE IF NOT EXISTS 'PROJECT_MANAGER';`);
+        // The 'role' column is defined as STRING in the initial migration, so no ENUM update is needed.
+        // await queryInterface.sequelize.query(`ALTER TYPE "enum_users_role" ADD VALUE IF NOT EXISTS 'PROJECT_MANAGER';`);
 
         // 2. Add columns to Projects table
         await queryInterface.addColumn('Projects', 'project_manager_id', {
