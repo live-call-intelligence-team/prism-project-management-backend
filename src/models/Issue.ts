@@ -177,11 +177,13 @@ Issue.init(
         estimatedHours: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: true,
+            field: 'estimated_hours'
         },
         actualHours: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: true,
             defaultValue: 0,
+            field: 'actual_hours'
         },
         dueDate: {
             type: DataTypes.DATE,
@@ -195,6 +197,7 @@ Issue.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             defaultValue: 0,
+            field: 'order_index'
         },
         labels: {
             type: DataTypes.ARRAY(DataTypes.STRING),
@@ -208,11 +211,13 @@ Issue.init(
             type: DataTypes.BOOLEAN,
             defaultValue: false,
             allowNull: false,
+            field: 'is_client_visible'
         },
         clientApprovalStatus: {
             type: DataTypes.ENUM(...Object.values(ClientApprovalStatus)),
             allowNull: true,
             defaultValue: null,
+            field: 'client_approval_status'
         },
         clientFeedback: {
             type: DataTypes.TEXT,
