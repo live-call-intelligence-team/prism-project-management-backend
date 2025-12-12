@@ -87,6 +87,7 @@ export class FileController {
             originalName: fileData.originalName,
             mimetype: fileData.mimetype,
             size: fileData.size,
+            path: fileData.path,
             fileUrl: fileData.url,
         });
 
