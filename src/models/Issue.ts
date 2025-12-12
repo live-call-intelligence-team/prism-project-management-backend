@@ -217,10 +217,10 @@ Issue.init(
             defaultValue: null,
             field: 'client_approval_status'
         },
-        clientFeedback: {
-            type: DataTypes.TEXT,
-            allowNull: true,
-        },
+        // clientFeedback: {
+        //     type: DataTypes.TEXT,
+        //     allowNull: true,
+        // },
     },
     {
         sequelize,
