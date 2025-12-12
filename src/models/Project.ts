@@ -148,7 +148,8 @@ Project.init(
         usesEpics: {
             type: DataTypes.BOOLEAN,
             defaultValue: true,
-            allowNull: false
+            allowNull: false,
+            field: 'uses_epics'
         },
         type: {
             type: DataTypes.ENUM(...Object.values(ProjectType)),
