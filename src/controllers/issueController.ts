@@ -1,6 +1,6 @@
 import { Response } from 'express';
 import { AuthRequest } from '../types/interfaces';
-import { Issue, User, Project, Sprint, Comment, Attachment, WorkLog, AuditLog, Epic, Feature } from '../models';
+import { Issue, User, Project, Sprint, Comment, Attachment, WorkLog, AuditLog, Feature } from '../models';
 import IssueLink, { LinkType } from '../models/IssueLink';
 import { AppError, asyncHandler } from '../middleware/errorHandler';
 import { AuditAction, UserRole, IssueType, IssueStatus } from '../types/enums';
@@ -84,9 +84,9 @@ export class IssueController {
                     attributes: ['id', 'name', 'status'],
                 },
                 {
-                    model: Epic,
+                    model: Issue,
                     as: 'epic',
-                    attributes: ['id', 'name', 'key'],
+                    attributes: ['id', 'title', 'key'],
                 },
                 {
                     model: Feature,
@@ -176,9 +176,9 @@ export class IssueController {
                     ],
                 },
                 {
-                    model: Epic,
+                    model: Issue,
                     as: 'epic',
-                    attributes: ['id', 'name', 'key'],
+                    attributes: ['id', 'title', 'key'],
                 },
                 {
                     model: Feature,

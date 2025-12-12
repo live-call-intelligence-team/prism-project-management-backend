@@ -154,7 +154,7 @@ Issue.init(
             type: DataTypes.UUID,
             allowNull: true,
             references: {
-                model: 'Epics',
+                model: 'Issues',
                 key: 'id',
             },
             onDelete: 'SET NULL',

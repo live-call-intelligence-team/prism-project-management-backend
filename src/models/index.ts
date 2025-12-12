@@ -79,7 +79,14 @@ Issue.hasMany(Issue, { foreignKey: 'parentId', as: 'subtasks' });
 Issue.hasMany(Comment, { foreignKey: 'issueId', as: 'comments' });
 Issue.hasMany(Attachment, { foreignKey: 'issueId', as: 'attachments' });
 Issue.hasMany(WorkLog, { foreignKey: 'issueId', as: 'workLogs' });
-Issue.belongsTo(Epic, { foreignKey: 'epicId', as: 'epic' });
+
+// Epic Hierarchy (Epics are Issues)
+Issue.belongsTo(Issue, { foreignKey: 'epicId', as: 'epic' });
+Issue.hasMany(Issue, { foreignKey: 'epicId', as: 'childIssues' });
+
+// Legacy/Unused?
+// Issue.belongsTo(Epic, { foreignKey: 'epicId', as: 'epicLegacy' });
+
 Issue.belongsTo(Feature, { foreignKey: 'featureId', as: 'feature' });
 
 Issue.hasMany(IssueLink, { foreignKey: 'sourceIssueId', as: 'links' });

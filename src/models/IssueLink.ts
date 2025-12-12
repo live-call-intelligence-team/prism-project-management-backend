@@ -45,6 +45,7 @@ IssueLink.init(
                 key: 'id',
             },
             onDelete: 'CASCADE',
+            field: 'source_issue_id'
         },
         targetIssueId: {
             type: DataTypes.UUID,
@@ -54,6 +55,7 @@ IssueLink.init(
                 key: 'id',
             },
             onDelete: 'CASCADE',
+            field: 'target_issue_id'
         },
         type: {
             type: DataTypes.ENUM(...Object.values(LinkType)),
