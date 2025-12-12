@@ -39,7 +39,8 @@ export class EpicController {
             key,
             tags: tags || [],
             goals,
-            businessValue,
+            // Sanitize businessValue: Map "100" to "HIGH", or ensure valid Enum
+            businessValue: (businessValue === '100' || businessValue === 100) ? 'HIGH' : businessValue,
             isVisibleToClient: isVisibleToClient || false
         });
 
