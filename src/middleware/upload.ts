@@ -20,7 +20,15 @@ const upload = multer({
         if (file.mimetype.startsWith('image/') ||
             file.mimetype === 'application/pdf' ||
             file.mimetype === 'application/msword' ||
-            file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+            file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
+            file.mimetype === 'text/plain' ||
+            file.mimetype === 'text/csv' ||
+            file.mimetype === 'application/json' ||
+            file.mimetype === 'application/vnd.ms-excel' ||
+            file.mimetype === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+            file.mimetype === 'application/zip' ||
+            file.mimetype === 'application/x-zip-compressed' ||
+            file.mimetype === 'text/markdown') {
             cb(null, true);
         } else {
             cb(new Error('Invalid file type'));
