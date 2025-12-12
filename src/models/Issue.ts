@@ -158,6 +158,7 @@ Issue.init(
                 key: 'id',
             },
             onDelete: 'SET NULL',
+            field: 'epic_id'
         },
         featureId: {
             type: DataTypes.UUID,
@@ -167,6 +168,7 @@ Issue.init(
                 key: 'id',
             },
             onDelete: 'SET NULL',
+            field: 'feature_id'
         },
         storyPoints: {
             type: DataTypes.INTEGER,
