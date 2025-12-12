@@ -63,7 +63,6 @@ Sprint.init(
                 key: 'id',
             },
             onDelete: 'CASCADE',
-            field: 'project_id'
         },
         name: {
             type: DataTypes.STRING(255),
@@ -84,12 +83,10 @@ Sprint.init(
         startDate: {
             type: DataTypes.DATE,
             allowNull: false,
-            field: 'start_date'
         },
         endDate: {
             type: DataTypes.DATE,
             allowNull: false,
-            field: 'end_date'
         },
         status: {
             type: DataTypes.ENUM(...Object.values(SprintStatus)),

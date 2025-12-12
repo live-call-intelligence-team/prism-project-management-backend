@@ -31,31 +31,31 @@ module.exports = {
             // 2. Delete Issues (Reporter or Assignee)
             // Due to RESTRICT, we must delete issues explicitly
             await queryInterface.sequelize.query(
-                `DELETE FROM "Issues" WHERE "reporter_id" IN (:userIds) OR "assignee_id" IN (:userIds)`,
+                `DELETE FROM "Issues" WHERE "reporterId" IN (:userIds) OR "assigneeId" IN (:userIds)`,
                 { replacements: { userIds } }
             );
 
             // 3. Delete Projects (Lead)
             // Due to RESTRICT on Lead, we must delete projects
             await queryInterface.sequelize.query(
-                `DELETE FROM "Projects" WHERE "lead_id" IN (:userIds) OR "client_id" IN (:userIds) OR "project_manager_id" IN (:userIds) OR "scrum_master_id" IN (:userIds)`,
+                `DELETE FROM "Projects" WHERE "leadId" IN (:userIds) OR "clientId" IN (:userIds) OR "projectManagerId" IN (:userIds) OR "scrumMasterId" IN (:userIds)`,
                 { replacements: { userIds } }
             );
 
             // 4. Delete associated WorkLogs, Comments, Attachments (Usually cascade, but safe to be sure if owned by user)
             // WorkLogs
             await queryInterface.sequelize.query(
-                `DELETE FROM "WorkLogs" WHERE "user_id" IN (:userIds)`,
+                `DELETE FROM "WorkLogs" WHERE "userId" IN (:userIds)`,
                 { replacements: { userIds } }
             );
             // Comments
             await queryInterface.sequelize.query(
-                `DELETE FROM "Comments" WHERE "user_id" IN (:userIds)`,
+                `DELETE FROM "Comments" WHERE "userId" IN (:userIds)`,
                 { replacements: { userIds } }
             );
             // Attachments
             await queryInterface.sequelize.query(
-                `DELETE FROM "Attachments" WHERE "uploaded_by" IN (:userIds)`,
+                `DELETE FROM "Attachments" WHERE "uploadedBy" IN (:userIds)`,
                 { replacements: { userIds } }
             );
 
