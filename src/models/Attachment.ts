@@ -55,7 +55,6 @@ Attachment.init(
                 key: 'id',
             },
             onDelete: 'CASCADE',
-            field: 'project_id',
         },
         userId: {
             type: DataTypes.UUID,
