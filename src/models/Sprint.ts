@@ -100,24 +100,22 @@ Sprint.init(
         plannedPoints: {
             type: DataTypes.INTEGER,
             allowNull: true,
-            field: 'planned_points'
         },
-        totalPoints: {
-            type: DataTypes.FLOAT,
-            allowNull: true,
-            defaultValue: 0,
-            field: 'total_points'
-        },
-        completedPoints: {
-            type: DataTypes.FLOAT,
-            allowNull: true,
-            defaultValue: 0,
-            field: 'completed_points'
-        },
+        // totalPoints: {
+        //     type: DataTypes.FLOAT,
+        //     allowNull: true,
+        //     defaultValue: 0,
+        //     field: 'total_points'
+        // },
+        // completedPoints: {
+        //     type: DataTypes.FLOAT,
+        //     allowNull: true,
+        //     defaultValue: 0,
+        //     field: 'completed_points'
+        // },
         burnDownConfig: {
             type: DataTypes.JSON,
             allowNull: true,
-            field: 'burn_down_config'
         },
         velocity: {
             type: DataTypes.INTEGER,
