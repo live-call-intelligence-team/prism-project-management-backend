@@ -106,6 +106,7 @@ Project.init(
                 key: 'id',
             },
             onDelete: 'SET NULL',
+            field: 'client_id'
         },
         projectManagerId: {
             type: DataTypes.UUID,
