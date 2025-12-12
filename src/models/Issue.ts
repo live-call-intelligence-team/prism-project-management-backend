@@ -177,13 +177,11 @@ Issue.init(
         estimatedHours: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: true,
-            field: 'estimated_hours'
         },
         actualHours: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: true,
             defaultValue: 0,
-            field: 'actual_hours'
         },
         dueDate: {
             type: DataTypes.DATE,
