@@ -81,6 +81,7 @@ Issue.init(
                 key: 'id',
             },
             onDelete: 'CASCADE',
+            field: 'project_id'
         },
         issueNumber: {
             type: DataTypes.INTEGER,
@@ -122,6 +123,7 @@ Issue.init(
                 key: 'id',
             },
             onDelete: 'SET NULL',
+            field: 'assignee_id'
         },
         reporterId: {
             type: DataTypes.UUID,
@@ -131,6 +133,7 @@ Issue.init(
                 key: 'id',
             },
             onDelete: 'RESTRICT',
+            field: 'reporter_id'
         },
         sprintId: {
             type: DataTypes.UUID,
@@ -140,6 +143,7 @@ Issue.init(
                 key: 'id',
             },
             onDelete: 'SET NULL',
+            field: 'sprint_id'
         },
         parentId: {
             type: DataTypes.UUID,
@@ -149,6 +153,7 @@ Issue.init(
                 key: 'id',
             },
             onDelete: 'CASCADE',
+            field: 'parent_id'
         },
         epicId: {
             type: DataTypes.UUID,
@@ -158,6 +163,7 @@ Issue.init(
                 key: 'id',
             },
             onDelete: 'SET NULL',
+            field: 'epic_id'
         },
         featureId: {
             type: DataTypes.UUID,
@@ -167,6 +173,7 @@ Issue.init(
                 key: 'id',
             },
             onDelete: 'SET NULL',
+            field: 'feature_id'
         },
         storyPoints: {
             type: DataTypes.INTEGER,

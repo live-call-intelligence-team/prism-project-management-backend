@@ -63,6 +63,7 @@ Sprint.init(
                 key: 'id',
             },
             onDelete: 'CASCADE',
+            field: 'project_id'
         },
         name: {
             type: DataTypes.STRING(255),
@@ -83,10 +84,12 @@ Sprint.init(
         startDate: {
             type: DataTypes.DATE,
             allowNull: false,
+            field: 'start_date'
         },
         endDate: {
             type: DataTypes.DATE,
             allowNull: false,
+            field: 'end_date'
         },
         status: {
             type: DataTypes.ENUM(...Object.values(SprintStatus)),
@@ -100,20 +103,24 @@ Sprint.init(
         plannedPoints: {
             type: DataTypes.INTEGER,
             allowNull: true,
+            field: 'planned_points'
         },
         totalPoints: {
             type: DataTypes.FLOAT,
             allowNull: true,
             defaultValue: 0,
+            field: 'total_points'
         },
         completedPoints: {
             type: DataTypes.FLOAT,
             allowNull: true,
             defaultValue: 0,
+            field: 'completed_points'
         },
         burnDownConfig: {
             type: DataTypes.JSON,
             allowNull: true,
+            field: 'burn_down_config'
         },
         velocity: {
             type: DataTypes.INTEGER,
