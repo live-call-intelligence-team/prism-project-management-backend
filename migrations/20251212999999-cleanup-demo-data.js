@@ -2,6 +2,9 @@
 
 module.exports = {
     async up(queryInterface, Sequelize) {
+        // Logging helper
+        const log = (msg) => console.log(`[CleanupMigration] ${msg}`);
+
         const demoEmails = [
             'admin@projecthub.com',
             'scrum@projecthub.com',
@@ -14,64 +17,79 @@ module.exports = {
             'client@demo.com'
         ];
 
+        log('Starting cleanup...');
+
         // 1. Find User IDs
         const users = await queryInterface.sequelize.query(
-            `SELECT id FROM "Users" WHERE email IN (:emails)`,
+            `SELECT id, email FROM "Users" WHERE email IN (:emails)`,
             {
                 replacements: { emails: demoEmails },
                 type: queryInterface.sequelize.QueryTypes.SELECT
             }
         );
 
-        const userIds = users.map(u => u.id);
-
-        if (userIds.length > 0) {
-            console.log(`Found ${userIds.length} demo users to cleanup.`);
-
-            // 2. Delete Issues (Reporter or Assignee)
-            // Due to RESTRICT, we must delete issues explicitly
-            await queryInterface.sequelize.query(
-                `DELETE FROM "Issues" WHERE "reporterId" IN (:userIds) OR "assigneeId" IN (:userIds)`,
-                { replacements: { userIds } }
-            );
-
-            // 3. Delete Projects (Lead)
-            // Due to RESTRICT on Lead, we must delete projects
-            await queryInterface.sequelize.query(
-                `DELETE FROM "Projects" WHERE "leadId" IN (:userIds) OR "client_id" IN (:userIds) OR "project_manager_id" IN (:userIds) OR "scrum_master_id" IN (:userIds)`,
-                { replacements: { userIds } }
-            );
-
-            // 4. Delete associated WorkLogs, Comments, Attachments (Usually cascade, but safe to be sure if owned by user)
-            // WorkLogs
-            await queryInterface.sequelize.query(
-                `DELETE FROM "WorkLogs" WHERE "userId" IN (:userIds)`,
-                { replacements: { userIds } }
-            );
-            // Comments
-            await queryInterface.sequelize.query(
-                `DELETE FROM "Comments" WHERE "userId" IN (:userIds)`,
-                { replacements: { userIds } }
-            );
-            // Attachments
-            await queryInterface.sequelize.query(
-                `DELETE FROM "Attachments" WHERE "uploadedBy" IN (:userIds)`,
-                { replacements: { userIds } }
-            );
-
-            // 5. Delete Users
-            await queryInterface.sequelize.query(
-                `DELETE FROM "Users" WHERE id IN (:userIds)`,
-                { replacements: { userIds } }
-            );
-
-            console.log('✅ Demo users and data cleaned up successfully.');
-        } else {
-            console.log('ℹ️ No demo users found to cleanup.');
+        if (users.length === 0) {
+            log('No demo users found. Skipping.');
+            return;
         }
+
+        const userIds = users.map(u => u.id);
+        log(`Found ${users.length} users: ${users.map(u => u.email).join(', ')}`);
+
+        // Helper to run delete safely
+        const safeDelete = async (table, condition, replacements) => {
+            log(`Deleting from ${table}...`);
+            try {
+                await queryInterface.sequelize.query(
+                    `DELETE FROM "${table}" WHERE ${condition}`,
+                    { replacements }
+                );
+                log(`Deleted from ${table}.`);
+            } catch (err) {
+                log(`Error deleting from ${table}: ${err.message}`);
+                // Don't throw, try to continue cleaning other tables
+            }
+        };
+
+        // 2. Delete Dependent Data (Project Dependencies)
+        // Project Members (usually cascades from Project or User, but let's be safe)
+        // Check if ProjectMembers table exists (it should)
+        await safeDelete('ProjectMembers', `"userId" IN (:userIds)`, { userIds });
+
+        // 3. Delete Issues (Reporter or Assignee)
+        // Issues.reporterId (camelCase)
+        // Issues.assigneeId (camelCase)
+        await safeDelete('Issues', `"reporterId" IN (:userIds) OR "assigneeId" IN (:userIds)`, { userIds });
+
+        // 4. Delete Projects (Lead or Key Roles)
+        // Projects.leadId (camelCase)
+        // Projects.client_id (snake_case)
+        // Projects.project_manager_id (snake_case)
+        // Projects.scrum_master_id (snake_case)
+        // We delete the PROJECT if the user is a key role, because RESTRICT prevents user deletion.
+        await safeDelete('Projects',
+            `"leadId" IN (:userIds) OR "client_id" IN (:userIds) OR "project_manager_id" IN (:userIds) OR "scrum_master_id" IN (:userIds)`,
+            { userIds }
+        );
+
+        // 5. Delete User Content
+        // WorkLogs.userId
+        await safeDelete('WorkLogs', `"userId" IN (:userIds)`, { userIds });
+
+        // Comments.userId
+        await safeDelete('Comments', `"userId" IN (:userIds)`, { userIds });
+
+        // Attachments.uploadedBy
+        await safeDelete('Attachments', `"uploadedBy" IN (:userIds)`, { userIds });
+
+        // 6. Delete Users
+        log('Deleting Users...');
+        await safeDelete('Users', `id IN (:userIds)`, { userIds });
+
+        log('Cleanup completed successfully.');
     },
 
     async down(queryInterface, Sequelize) {
-        // No down migration possible as data is deleted
+        // No down migration
     }
 };
