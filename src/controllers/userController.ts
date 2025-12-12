@@ -355,7 +355,17 @@ export class UserController {
             userAgent: req.get('user-agent'),
         });
 
-        await user.destroy();
+        try {
+            await user.destroy();
+        } catch (error: any) {
+            if (error.name === 'SequelizeForeignKeyConstraintError') {
+                throw new AppError(
+                    'Cannot delete user because they are assigned to projects or issues. Please reassign their work first.',
+                    409
+                );
+            }
+            throw error;
+        }
 
         res.json({
             success: true,
