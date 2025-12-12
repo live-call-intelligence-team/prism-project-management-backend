@@ -73,7 +73,7 @@ AuditLog.init(
         sequelize,
         tableName: 'AuditLogs',
         timestamps: true,
-        timestamps: true,
+
         indexes: [
             {
                 fields: ['user_id'],
