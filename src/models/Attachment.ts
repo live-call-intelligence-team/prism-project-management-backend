@@ -76,6 +76,7 @@ Attachment.init(
         mimetype: {
             type: DataTypes.STRING(100),
             allowNull: false,
+            field: 'mimeType',
         },
         size: {
             type: DataTypes.INTEGER,
@@ -84,6 +85,7 @@ Attachment.init(
         fileUrl: {
             type: DataTypes.STRING(500),
             allowNull: false,
+            field: 'url',
         },
     },
     {
