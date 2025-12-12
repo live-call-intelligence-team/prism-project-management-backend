@@ -28,7 +28,13 @@ const upload = multer({
             file.mimetype === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
             file.mimetype === 'application/zip' ||
             file.mimetype === 'application/x-zip-compressed' ||
-            file.mimetype === 'text/markdown') {
+            file.mimetype === 'text/markdown' ||
+            file.mimetype === 'application/x-iwork-numbers-sffnumbers' ||
+            file.mimetype === 'application/vnd.apple.numbers' ||
+            file.mimetype === 'application/x-iwork-pages-sffpages' ||
+            file.mimetype === 'application/vnd.apple.pages' ||
+            file.mimetype === 'application/x-iwork-keynote-sffkey' ||
+            file.mimetype === 'application/vnd.apple.keynote') {
             cb(null, true);
         } else {
             console.error(`[Upload Middleware] Rejected file type: ${file.mimetype} for file: ${file.originalname}`);
