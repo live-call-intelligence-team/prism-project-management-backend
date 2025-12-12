@@ -10,6 +10,7 @@ interface AttachmentAttributes {
     originalName: string;
     mimetype: string;
     size: number;
+    path: string;
     fileUrl: string;
     createdAt?: Date;
     updatedAt?: Date;
@@ -26,6 +27,7 @@ class Attachment extends Model<AttachmentAttributes, AttachmentCreationAttribute
     public originalName!: string;
     public mimetype!: string;
     public size!: number;
+    public path!: string;
     public fileUrl!: string;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
@@ -80,6 +82,10 @@ Attachment.init(
         },
         size: {
             type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        path: {
+            type: DataTypes.STRING(500),
             allowNull: false,
         },
         fileUrl: {

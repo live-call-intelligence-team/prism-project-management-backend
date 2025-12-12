@@ -34,6 +34,7 @@ export class AttachmentController {
             originalName: file.originalname,
             mimetype: file.mimetype,
             size: file.size,
+            path: file.path,
             fileUrl,
         });
 
