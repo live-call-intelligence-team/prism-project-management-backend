@@ -38,7 +38,7 @@ module.exports = {
             // 3. Delete Projects (Lead)
             // Due to RESTRICT on Lead, we must delete projects
             await queryInterface.sequelize.query(
-                `DELETE FROM "Projects" WHERE "leadId" IN (:userIds) OR "clientId" IN (:userIds) OR "projectManagerId" IN (:userIds) OR "scrumMasterId" IN (:userIds)`,
+                `DELETE FROM "Projects" WHERE "leadId" IN (:userIds) OR "client_id" IN (:userIds) OR "project_manager_id" IN (:userIds) OR "scrum_master_id" IN (:userIds)`,
                 { replacements: { userIds } }
             );
 
