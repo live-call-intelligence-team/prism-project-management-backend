@@ -31,7 +31,8 @@ const upload = multer({
             file.mimetype === 'text/markdown') {
             cb(null, true);
         } else {
-            cb(new Error('Invalid file type'));
+            console.error(`[Upload Middleware] Rejected file type: ${file.mimetype} for file: ${file.originalname}`);
+            cb(new Error(`Invalid file type: ${file.mimetype}`));
         }
     }
 });
