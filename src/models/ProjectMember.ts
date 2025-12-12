@@ -38,7 +38,6 @@ ProjectMember.init(
                 key: 'id',
             },
             onDelete: 'CASCADE',
-            field: 'project_id'
         },
         userId: {
             type: DataTypes.UUID,
@@ -48,7 +47,6 @@ ProjectMember.init(
                 key: 'id',
             },
             onDelete: 'CASCADE',
-            field: 'user_id'
         },
         role: {
             type: DataTypes.STRING(50),
