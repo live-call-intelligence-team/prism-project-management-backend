@@ -15,7 +15,7 @@ export const strictLimiter = rateLimit({
 // Authentication rate limiter
 export const authLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 100, // Relaxed for development
+    max: 2000, // Relaxed for development
     skipSuccessfulRequests: true, // Don't count successful logins
     message: 'Too many authentication attempts, please try again later',
 });
@@ -23,7 +23,7 @@ export const authLimiter = rateLimit({
 // API rate limiter
 export const apiLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 100,
+    max: 5000,
     message: 'Too many requests, please try again later',
     standardHeaders: true,
     legacyHeaders: false,
