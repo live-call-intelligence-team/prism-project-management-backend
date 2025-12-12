@@ -110,7 +110,7 @@ export const createWorkLogValidation = [
 // Pagination validation
 export const paginationValidation = [
     query('page').optional().isInt({ min: 1 }).toInt(),
-    query('limit').optional().isInt({ min: 1, max: 100 }).toInt(),
+    query('limit').optional().isInt({ min: 1, max: 1000 }).toInt(),
     query('sortBy').optional().trim(),
     query('sortOrder').optional().isIn(['ASC', 'DESC']),
 ];
